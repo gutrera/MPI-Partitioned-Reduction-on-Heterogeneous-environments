@@ -1,0 +1,26 @@
+#!/bin/bash
+#SBATCH --job-name="test"
+#SBATCH -D .
+#SBATCH --qos=acc_debug
+#SBATCH --output=test.out
+#SBATCH --error=test.err
+#SBATCH --nodes=1
+#SBATCH --ntasks=40
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:05:00
+#SBATCH --exclusive
+#SBATCH --gres=gpu:1
+#SBATCH --account=bsc32
+#SBATCH --constraint=perfparanoid
+
+export SRUN_CPUS_PER_TASK=${SLURM_CPUS_PER_TASK}
+export EXEC=./testPR
+export NPROCS=40
+export MPIRUN=mpirun
+export MAX_LOOPS=1
+export CALCULUS=20
+export GROUP_SIZE=20
+export NDATA=80
+
+$MPIRUN -np $NPROCS $EXEC
+
