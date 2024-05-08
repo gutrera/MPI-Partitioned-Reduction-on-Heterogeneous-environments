@@ -22,3 +22,10 @@ The script qexec provides an example of execution with the needed setting of env
 - MAX_LOOPS: Number of repetitions of the collective (cache re-use is avoided)
 - NDATA: size in bytes of the message (minimum = sizeof(int) * GROUP_SIZE)
 
+```bash
+export GROUP_SIZE=20
+export CALCULUS=20
+export MAX_LOOPS=10
+export NDATA=80
+mpirun -np 40 ./testPR
+```
