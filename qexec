@@ -1,26 +1,57 @@
 #!/bin/bash
 #SBATCH --job-name="test"
 #SBATCH -D .
-#SBATCH --qos=acc_debug
 #SBATCH --output=test.out
 #SBATCH --error=test.err
 #SBATCH --nodes=1
 #SBATCH --ntasks=40
 #SBATCH --cpus-per-task=1
 #SBATCH --time=00:05:00
-#SBATCH --exclusive
 #SBATCH --gres=gpu:1
-#SBATCH --account=bsc32
-#SBATCH --constraint=perfparanoid
 
-export SRUN_CPUS_PER_TASK=${SLURM_CPUS_PER_TASK}
-export EXEC=./testPR
-export NPROCS=40
 export MPIRUN=mpirun
-export MAX_LOOPS=1
-export CALCULUS=20
+export NPROCS=40
+export EXEC=./testPR
+
 export GROUP_SIZE=20
+export CALCULUS=20
+export MAX_LOOPS=10
+
 export NDATA=80
-
 $MPIRUN -np $NPROCS $EXEC
-
+export NDATA=160
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=320
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=640
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=1280
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=2560
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=5120
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=10240
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=20480
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=40960
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=81920
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=163840
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=327680
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=655360
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=1310720
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=2621440
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=5242880
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=10485760
+$MPIRUN -np $NPROCS $EXEC
+export NDATA=20971520
+$MPIRUN -np $NPROCS $EXEC
